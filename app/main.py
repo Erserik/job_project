@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from app.config import settings
 from app.database import Base, engine
+from app import models
+from app.api import api_router
 
 
 def create_app() -> FastAPI:
@@ -16,6 +18,7 @@ def create_app() -> FastAPI:
     def health():
         return {"status": "ok"}
 
+    app.include_router(api_router)
     return app
 
 
